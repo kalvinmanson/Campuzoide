@@ -1,0 +1,95 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use Illuminate\Http\Request;
+use App\Field;
+use App\Country;
+use App\Category;
+use App\Page;
+use App\Http\Controllers\Controller;
+
+class FieldController extends Controller
+{
+    public function index() {
+        if(!$this->hasrole('Admin')) { return redirect('/'); }
+        // Only Admins
+        $fields = Field::select('name')->groupBy('name')->get();
+        return response()->json($fields);
+    }
+    public function store(Request $request) {
+        if(!$this->hasrole('Admin')) { return redirect('/'); }
+    	$this->validate(request(), [
+            'name' => ['required', 'max:100']
+        ]);
+
+        $field = new Field;
+
+        $field->page_id = $request->page_id;
+        $field->category_id = $request->category_id;
+        $field->country_id = $request->country_id;
+        $field->name = $request->name;
+        $field->format = $request->format;
+        $field->content = $request->content;
+        $field->save();
+        flash('Record created')->success();
+        if($field->page) {
+            return redirect()->action('Admin\PageController@edit', $field->page_id);
+        } elseif($field->category) {
+            return redirect()->action('Admin\CategoryController@edit', $field->category_id);
+        } elseif($field->country) {
+            return redirect()->action('Admin\CountryController@edit', $field->country_id);
+        }
+        
+
+    }
+
+    public function edit($id) {
+        if(!$this->hasrole('Admin')) { return redirect('/'); }
+        $field = Field::find($id);
+        return view('admin.fields.edit', compact('field'));
+    }
+
+    public function update($id, Request $request) {
+        if(!$this->hasrole('Admin')) { return redirect('/'); }
+        $field = Field::find($id);
+        $this->validate(request(), [
+            'name' => ['required', 'max:100']
+        ]);
+
+        //restore trashed item
+        if($request->untrash) {
+            $field->restore();
+        }
+        
+        $field->category_id = $request->category_id;
+        $field->country_id = $request->country_id;
+        $field->name = $request->name;
+        $field->picture = $request->picture;
+        $field->description = $request->description;
+        $field->content = $request->content;
+        $field->save();
+
+        flash('Record updated')->success();
+        if($field->page) {
+            return redirect()->action('Admin\PageController@edit', $field->page_id);
+        } elseif($field->category) {
+            return redirect()->action('Admin\CategoryController@edit', $field->category_id);
+        } elseif($field->country) {
+            return redirect()->action('Admin\CountryController@edit', $field->country_id);
+        }
+    }
+    public function destroy($id) {
+        if(!$this->hasrole('Admin')) { return redirect('/'); }
+        $field = Field::find($id);
+        Field::destroy($field->id);
+        flash('Record deleted')->success();
+        if($field->page) {
+            return redirect()->action('Admin\PageController@edit', $field->page_id);
+        } elseif($field->category) {
+            return redirect()->action('Admin\CategoryController@edit', $field->category_id);
+        } elseif($field->country) {
+            return redirect()->action('Admin\CountryController@edit', $field->country_id);
+        }
+    }
+}
