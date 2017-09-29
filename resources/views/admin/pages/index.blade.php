@@ -14,8 +14,9 @@
                 <th>Category</th>
                 <th>Country</th>
                 <th>Picture</th>
-                <th>Description</th>
-                <th width="250">Timestamps</th>
+                <th>Weight</th>
+                <th>Created at</th>
+                <th>Updated at</th>
             </tr>
         </thead>
         <tbody>
@@ -29,14 +30,9 @@
                 <td>{{ $page->category->name }}</td>
                 <td>{{ $page->country->name }}</td>
                 <td><a href="{{ $page->picture }}" data-fancybox data-caption="{{ $page->name }}">{{ $page->picture }}</a></td>
-                <td>{{ $page->description }}</td>
-                <td>
-                    <small>
-                        Created at: {{ Carbon::createFromFormat('Y-m-d H:i:s', $page->created_at)->format('jS F Y g:ia') }}<br />
-                        Updated at: {{ Carbon::createFromFormat('Y-m-d H:i:s', $page->updated_at)->format('jS F Y g:ia') }}<br />
-                        ({{ Carbon::createFromFormat('Y-m-d H:i:s', $page->updated_at)->diffForHumans() }})
-                    </small>
-                </td>
+                <td>{{ $page->weight }}</td>
+                <td>{{ $page->created_at }}</td>
+                <td>{{ $page->updated_at }}</td>
             </tr>
             @endforeach
         </tbody>

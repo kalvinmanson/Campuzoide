@@ -10,10 +10,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">Blog</a>
+        <a class="nav-link" href="/blog">Blog</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">¿Cómo funciona?</a>
+        <a class="nav-link" href="/campuzoide/como-funciona">¿Cómo funciona?</a>
       </li>
     </ul>
     <form class="form-inline">

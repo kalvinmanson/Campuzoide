@@ -11,7 +11,7 @@ class BlockController extends Controller
     public function index()
     {
         if(!$this->hasrole('Admin')) { return redirect('/'); }
-    	$blocks = Block::get();
+    	$blocks = Block::orderBy('updated_at', 'desc')->get();
     	return view('admin.blocks.index', compact('blocks'));
     }
     public function store(Request $request) {

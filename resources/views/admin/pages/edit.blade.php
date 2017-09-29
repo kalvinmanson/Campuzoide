@@ -17,7 +17,7 @@
                 </div>
                 @endif
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class="form-group">
                             <label for="country_id">Country</label>
                             <select name="country_id" id="country_id" class="form-control">
@@ -27,7 +27,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-5">
                         <div class="form-group">
                             <label for="category_id">Category</label>
                             <select name="category_id" id="category_id" class="form-control">
@@ -37,10 +37,20 @@
                             </select>
                         </div>
                     </div>
+                    <div class="col-lg-2">
+                        <div class="form-group">
+                            <label for="weight">Weight</label>
+                            <input type="number" name="weight" id="weight" class="form-control" value="{{ $page->weight }}">
+                        </div>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="ej. Colombia" value="{{ old('name') ? old('name') : $page->name }}">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="ej. Example Page" value="{{ old('name') ? old('name') : $page->name }}">
+                </div>
+                <div class="form-group">
+                    <label for="slug">Slug</label>
+                    <input type="text" class="form-control" id="slug" name="slug" placeholder="example-page" value="{{ old('slug') ? old('slug') : $page->slug }}">
                 </div>
                 <div class="form-group">
                     <label for="picture">Picture</label>
@@ -63,7 +73,7 @@
                 </form>
             </div>
             <div class="col-md-4">
-                @include('admin.fields.share', ['pastFields' => $page->fields])
+                @include('admin.fields.share', ['pastFields' => $page->fields, 'destiny' => 'page'])
             </div>
         </div>
     

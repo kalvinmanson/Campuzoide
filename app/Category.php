@@ -12,10 +12,10 @@ class Category extends Model
 
     public function pages()
     {
-        return $this->hasMany('App\Page');
+        return $this->hasMany('App\Page')->orderBy('weight');
     }
     public function fields()
     {
-        return $this->hasMany('App\Field');
+        return $this->hasMany('App\Field')->orderBy('name');
     }
 }

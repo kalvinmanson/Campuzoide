@@ -2,19 +2,30 @@
 
 @section('content')
     <h1>Countries: Edit {{ $country->name }}</h1>
-    <form method="POST" action="{{ url('admin/countries/' . $country->id) }}">
-        <input type="hidden" name="_method" value="PUT">
-        {{ csrf_field() }}
-        <div class="row">
-            <div class="col-md-8">
+    <div class="row">
+        <div class="col-sm-8">
+            <form method="POST" action="{{ url('admin/countries/' . $country->id) }}">
+                <input type="hidden" name="_method" value="PUT">
+                {{ csrf_field() }}
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" class="form-control" id="name" name="name" placeholder="ej. Colombia" value="{{ old('name') ? old('name') : $country->name }}">
                 </div>
-                <div class="form-group">
-                    <label for="code">Code</label>
-                    <input type="text" class="form-control" id="code" name="code" placeholder="ej. Colombia" value="{{ old('code') ? old('code') : $country->code }}">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="code">Code</label>
+                            <input type="text" class="form-control" id="code" name="code" placeholder="ej. Colombia" value="{{ old('code') ? old('code') : $country->code }}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="lang">Lang</label>
+                            <input type="text" class="form-control" id="lang" name="lang" placeholder="es" value="{{ old('lang') ? old('lang') : $country->lang }}">
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="domain">Domain</label>
                     <input type="text" class="form-control" id="domain" name="domain" placeholder="ej. Colombia" value="{{ old('domain') ? old('domain') : $country->domain }}">
@@ -22,8 +33,7 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
                 </div>
-            </div>
-            <div class="col-md-4">
+                <hr />
                 <div class="form-group">
                     <label for="configs">Configs</label>
                     <table id="tableTarget" class="table table-striped">
@@ -39,7 +49,10 @@
                             </tr>
                     </table>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+        <div class="col-sm-4">
+            @include('admin.fields.share', ['pastFields' => $country->fields, 'destiny' => 'country'])
+        </div>
+    </div>
 @endsection

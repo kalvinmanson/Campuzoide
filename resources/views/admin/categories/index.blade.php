@@ -12,8 +12,8 @@
                 <th width="10">#</th>
                 <th>Name</th>
                 <th>Picture</th>
-                <th>Description</th>
-                <th width="250">Timestamps</th>
+                <th>Created at</th>
+                <th>Updated at</th>
             </tr>
         </thead>
         <tbody>
@@ -25,14 +25,8 @@
                     <small><a href="/{{ $category->slug }}" target="_blank">/{{ $category->slug }}</a></small>
                 </td>
                 <td><a href="{{ $category->picture }}" data-fancybox data-caption="{{ $category->name }}">{{ $category->picture }}</a></td>
-                <td>{{ $category->description }}</td>
-                <td>
-                    <small>
-                        Created at: {{ Carbon::createFromFormat('Y-m-d H:i:s', $category->created_at)->format('jS F Y g:ia') }}<br />
-                        Updated at: {{ Carbon::createFromFormat('Y-m-d H:i:s', $category->updated_at)->format('jS F Y g:ia') }}<br />
-                        ({{ Carbon::createFromFormat('Y-m-d H:i:s', $category->updated_at)->diffForHumans() }})
-                    </small>
-                </td>
+                <td>{{ $category->created_at }}</td>
+                <td>{{ $category->updated_at }}</td>
             </tr>
             @endforeach
         </tbody>

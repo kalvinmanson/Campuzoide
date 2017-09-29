@@ -17,6 +17,7 @@ class CreateCountriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('code')->unique();
+            $table->string('lang')->default('en');
             $table->string('domain');
             $table->text('configs')->nullable();
             $table->softDeletes();

@@ -20,6 +20,6 @@ class Page extends Model
     }
     public function fields()
     {
-        return $this->hasMany('App\Field');
+        return $this->hasMany('App\Field')->orderBy('name');
     }
 }

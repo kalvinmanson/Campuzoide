@@ -11,9 +11,10 @@
         <tr>
             <th width="10">#</th>
             <th>Name</th>
+            <th>Format</th>
             <th>Picture</th>
-            <th>Description</th>
-            <th width="250">Timestamps</th>
+            <th>Created at</th>
+            <th>Updated at</th>
         </tr>
     </thead>
     <tbody>
@@ -23,15 +24,10 @@
             <td>
                 <a href="/admin/blocks/{{ $block->id }}/edit">{{ $block->name }}</a>
             </td>
+            <td>{{ $block->format }}</td>
             <td><a href="{{ $block->picture }}" data-fancybox data-caption="{{ $block->name }}">{{ $block->picture }}</a></td>
-            <td>{{ $block->description }}</td>
-            <td>
-                <small>
-                    Created at: {{ Carbon::createFromFormat('Y-m-d H:i:s', $block->created_at)->format('jS F Y g:ia') }}<br />
-                    Updated at: {{ Carbon::createFromFormat('Y-m-d H:i:s', $block->updated_at)->format('jS F Y g:ia') }}<br />
-                    ({{ Carbon::createFromFormat('Y-m-d H:i:s', $block->updated_at)->diffForHumans() }})
-                </small>
-            </td>
+            <td>{{ $block->created_at }}</td>
+            <td>{{ $block->updated_at }}</td>
         </tr>
         @endforeach
     </tbody>

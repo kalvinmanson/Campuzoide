@@ -1,6 +1,5 @@
 <div class="sidefields">
-
-	<div class="card">
+	<div class="card bg-secondary text-white">
 	  <div class="card-header">New field</div>
 	  <div class="card-body">
 	  	<form method="POST" action="{{ url('admin/fields') }}">
@@ -26,9 +25,9 @@
 		    	<textarea name="content" id="content" class="form-control"></textarea>
 		    </div>
 		    <div class="form-group">
-				<input type="hidden" name="page_id" value="{{ isset($page) ? $page->id : 0 }}">
-				<input type="hidden" name="category_id" value="{{ isset($category) ? $category->id : 0 }}">
-				<input type="hidden" name="country_id" value="{{ isset($country) ? $country->id : 0 }}">
+				<input type="hidden" name="page_id" value="{{ $destiny == "page" ? $page->id : 0 }}">
+				<input type="hidden" name="category_id" value="{{ $destiny == "category" ? $category->id : 0 }}">
+				<input type="hidden" name="country_id" value="{{ $destiny == "country" ? $country->id : 0 }}">
 		    	<button type="submit" class="btn btn-primary">Save</button>
 		    </div>
 		</form>
@@ -44,12 +43,12 @@
 	  	    'route' => ['admin.fields.destroy', $field->id]
 	  	]) !!}
 	  		<div class="btn-group pull-right">
-		  	    <a href="/admin/fields/{{ $field->id }}/edit" class="btn btn-warning btn-sm fancya"><i class="fa fa-edit"></i></a>
+		  	    <a href="/admin/fields/{{ $field->id }}/edit" class="btn btn-warning btn-sm" data-fancybox data-type="ajax"><i class="fa fa-edit"></i></a>
 		  	    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></button>
 	  	    </div>
 	  	{!! Form::close() !!}
 
-	    <h4 class="list-group-item-heading">{{ $field->name }}</h4>
+	    <h4 class="list-group-item-heading">{{ $field->name }}<small>({{ $field->format }})</small></h4>
 	    <p class="list-group-item-text">{{ $field->content }}</p>
 	  </div>
 	@endforeach

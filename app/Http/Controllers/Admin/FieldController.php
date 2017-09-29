@@ -47,26 +47,15 @@ class FieldController extends Controller
     public function edit($id) {
         if(!$this->hasrole('Admin')) { return redirect('/'); }
         $field = Field::find($id);
-        return view('admin.fields.edit', compact('field'));
+        $formats = Field::select('format')->groupBy('format')->get();
+        return view('admin.fields.edit', compact('field', 'formats'));
     }
 
     public function update($id, Request $request) {
         if(!$this->hasrole('Admin')) { return redirect('/'); }
         $field = Field::find($id);
-        $this->validate(request(), [
-            'name' => ['required', 'max:100']
-        ]);
 
-        //restore trashed item
-        if($request->untrash) {
-            $field->restore();
-        }
-        
-        $field->category_id = $request->category_id;
-        $field->country_id = $request->country_id;
-        $field->name = $request->name;
-        $field->picture = $request->picture;
-        $field->description = $request->description;
+        $field->format = $request->format;
         $field->content = $request->content;
         $field->save();
 

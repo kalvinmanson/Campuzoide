@@ -13,7 +13,8 @@
                 <th>Name</th>
                 <th>Code</th>
                 <th>Domain</th>
-                <th width="250">Timestamps</th>
+                <th>Created at</th>
+                <th>Updated at</th>
             </tr>
         </thead>
         <tbody>
@@ -25,13 +26,8 @@
                 </td>
                 <td>{{ $country->code }}</td>
                 <td>{{ $country->domain }}</td>
-                <td>
-                    <small>
-                        Created at: {{ Carbon::createFromFormat('Y-m-d H:i:s', $country->created_at)->format('jS F Y g:ia') }}<br />
-                        Updated at: {{ Carbon::createFromFormat('Y-m-d H:i:s', $country->updated_at)->format('jS F Y g:ia') }}<br />
-                        ({{ Carbon::createFromFormat('Y-m-d H:i:s', $country->updated_at)->diffForHumans() }})
-                    </small>
-                </td>
+                <td>{{ $country->created_at }}</td>
+                <td>{{ $country->updated_at }}</td>
             </tr>
             @endforeach
         </tbody>

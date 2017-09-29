@@ -37,8 +37,8 @@ class CategoryController extends Controller
     public function edit($id) {
         if(!$this->hasrole('Admin')) { return redirect('/'); }
         $category = Category::withTrashed()->find($id);
-        $fields = Field::select('name')->groupBy('name')->get();
-        $formats = Field::select('format')->groupBy('format')->get();
+        $fields = Field::where('category_id', '>', 0)->select('name')->groupBy('name')->get();
+        $formats = Field::where('category_id', '>', 0)->select('format')->groupBy('format')->get();
 
         return view('admin.categories.edit', compact('category', 'fields', 'formats'));
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use Auth;
 use App\Country;
 
@@ -20,12 +21,11 @@ class Controller extends BaseController
     public function country() {
         $domain = request()->server->get('SERVER_NAME');
         $country = Country::where('domain', $domain)->first();
-        if($country) {
-            return $country;
-        } else {
+        if(!$country) {
             $country = Country::first();
-            return $country;
         }
+        App::setLocale($country->lang);
+        return $country;
         
     }
 

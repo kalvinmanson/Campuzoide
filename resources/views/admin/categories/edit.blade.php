@@ -41,7 +41,7 @@
             </form>
         </div>
         <div class="col-md-4">
-            @include('admin.fields.share', ['pastFields' => $category->fields])
+            @include('admin.fields.share', ['pastFields' => $category->fields, 'destiny' => 'category'])
         </div>
     </div>
 

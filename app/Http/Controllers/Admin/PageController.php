@@ -22,7 +22,7 @@ class PageController extends Controller
     }
     public function index() {
         if(!$this->hasrole('Admin')) { return redirect('/'); }
-    	$pages = Page::withTrashed()->get();
+    	$pages = Page::withTrashed()->orderBy('updated_at', 'desc')->get();
     	return view('admin.pages.index', compact('pages'));
     }
     public function store(Request $request) {
@@ -53,8 +53,8 @@ class PageController extends Controller
         $page = Page::withTrashed()->find($id);
         $categories = Category::all();
         $countries = Country::all();
-        $fields = Field::select('name')->groupBy('name')->get();
-        $formats = Field::select('format')->groupBy('format')->get();
+        $fields = Field::where('page_id', '>', 0)->select('name')->groupBy('name')->get();
+        $formats = Field::where('page_id', '>', 0)->select('format')->groupBy('format')->get();
         return view('admin.pages.edit', compact('page', 'countries', 'categories', 'fields', 'formats'));
     }
 
@@ -62,7 +62,8 @@ class PageController extends Controller
         if(!$this->hasrole('Admin')) { return redirect('/'); }
         $page = Page::withTrashed()->find($id);
         $this->validate(request(), [
-            'name' => ['required', 'max:100']
+            'name' => ['required', 'max:200'],
+            'slug' => ['unique:pages,slug,'.$page->id, 'required', 'max:100']
         ]);
         //restore trashed item
         if($request->untrash) {
@@ -72,9 +73,11 @@ class PageController extends Controller
         $page->category_id = $request->category_id;
         $page->country_id = $request->country_id;
         $page->name = $request->name;
+        $page->slug = $request->slug;
         $page->picture = $request->picture;
         $page->description = $request->description;
         $page->content = $request->content;
+        $page->weight = $request->weight;
         $page->save();
 
         flash('Record updated')->success();
