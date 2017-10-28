@@ -48,10 +48,10 @@
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                         </div>
 
+                        {!! NoCaptcha::display() !!}
+
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">
-                                Register
-                            </button>
+                            <button type="submit" class="btn btn-primary">Register</button>
                         </div>
                     </form>
                 </div>

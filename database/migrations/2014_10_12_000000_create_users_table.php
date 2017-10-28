@@ -32,7 +32,9 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->float('rank')->default(0);
             $table->boolean('subscribed')->default(true);
-            $table->boolean('active')->default(false);            
+            $table->boolean('active')->default(false);
+            $table->boolean('confirmed')->default(0);
+            $table->string('token')->nullable();        
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

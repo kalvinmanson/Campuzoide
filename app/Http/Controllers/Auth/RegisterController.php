@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -51,6 +53,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
     }
 
@@ -77,4 +80,41 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+    protected function register(Request $request) 
+    {
+        $input = $request->all();
+        $validator = $this->validator($input);
+
+        if($validator->passes()) {
+            $data = $this->create($input)->toArray();
+
+            $data['token'] = str_random(25);
+
+            $user = User::find($data['id']);
+            $user->token = $data['token'];
+            $user->save();
+
+            Mail::send('email.confirmation', $data, function($message) use($data) {
+                $message->to($data['email']);
+                $message->subject('Confirma tu registro');
+            });
+
+            return redirect(route('login'));
+        }
+        return redirect(route('register'));
+    }
+
+    public function confirmation($token) {
+        $user = User::where('token', $token)->first();
+
+        if(!is_null($user)) {
+            $user->confirmed = 1;
+            $user->token = '';
+            $user->save();
+            return redirect(route('login'));
+        }
+
+        return redirect(route('register'));
+    }
+
 }

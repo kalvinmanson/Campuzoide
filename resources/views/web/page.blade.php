@@ -5,7 +5,7 @@
     
     <div class="jumbotron">
         <h1>{{ $page->name }}</h1>
-        {{ $page->content }}
+        {!! $page->content !!}
     </div>
 </div>
 @endsection

@@ -15,6 +15,7 @@ $cyan:    #0197ca !default;
 @import "./fa/font-awesome";
 @import "./animate";
 @import "./jquery.fancybox.min";
+@import "./pagination";
 
 /* MIXINS */
 @mixin border-radius($radius) {

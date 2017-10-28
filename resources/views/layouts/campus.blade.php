@@ -38,7 +38,7 @@
               <a href="/questions" class="list-group-item list-group-item-action">Iniciar un desafio</a>
               <a href="#" class="list-group-item list-group-item-action">Resultados</a>
               <a href="#" class="list-group-item list-group-item-action">Examenes</a>
-              <a href="#" class="list-group-item list-group-item-action">Colaborar</a>
+              <a href="/questions/cooperate" class="list-group-item list-group-item-action">Colaborar</a>
             </div>
             <div class="list-group">
               <span class="list-group-item active"><strong>Aulas virtuales</strong></span>
