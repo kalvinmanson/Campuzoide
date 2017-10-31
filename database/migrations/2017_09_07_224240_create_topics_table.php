@@ -23,6 +23,7 @@ class CreateTopicsTable extends Migration
             $table->string('name');
             $table->text('content')->nullable();
             $table->float('rank')->default(0);
+            $table->string('tags')->nullable();
             $table->boolean('solved')->default(false);
             $table->timestamps();
         });

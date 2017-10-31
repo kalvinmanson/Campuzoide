@@ -12,6 +12,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- editor -->
+    <script src="{{ asset('editor/ckeditor.js') }}"></script>
 </head>
 <body class="pt-5">
 @include('partials.header')

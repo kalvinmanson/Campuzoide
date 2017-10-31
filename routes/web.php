@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/questions', 'QuestionController@index');
     Route::get('/questions/challenge', 'QuestionController@challenge');
     Route::get('/questions/cooperate', 'QuestionController@cooperate');
-    Route::get('/questions/create', 'QuestionController@create');
+    Route::any('/questions/create', 'QuestionController@create');
 });
 
 Auth::routes();

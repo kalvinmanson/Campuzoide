@@ -19,6 +19,7 @@ class CreateRepliesTable extends Migration
             $table->integer('topic_id')->default(0);
             $table->text('content')->nullable();
             $table->float('rank')->default(0);
+            $table->string('tags')->nullable();
             $table->timestamps();
         });
     }

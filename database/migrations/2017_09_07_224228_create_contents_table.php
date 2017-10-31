@@ -23,6 +23,7 @@ class CreateContentsTable extends Migration
             $table->text('description')->nullable();
             $table->text('content')->nullable();
             $table->integer('position')->default(0);
+            $table->string('tags')->nullable();
             $table->timestamps();
         });
     }

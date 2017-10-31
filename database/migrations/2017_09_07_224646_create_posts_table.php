@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->integer('area_id')->default(0);
             $table->text('content');
             $table->boolean('favored')->default(false);
+            $table->string('tags')->nullable();
             $table->timestamps();
         });
     }
