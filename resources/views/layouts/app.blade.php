@@ -8,24 +8,29 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Campuzoide') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- editor -->
+    <script src="{{ asset('editor/ckeditor.js') }}"></script>
 </head>
 <body class="pt-5">
 @include('partials.header')
-    <div class="container">
-        @include('flash::message')
-        @include('partials.errors')
+    <div class="campus">
+        @include('partials.user')
+        <div class="content">
+            <div class="inner pt-4">
+                <div class="container">
+                    @include('flash::message')
+                    @include('partials.errors')
+                </div>
+                <div class="{{ Auth::check() ? 'container-fluid' : 'container'}}">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
     </div>
-
-    @yield('content')
-<footer>
-    <div class="container">
-        <p>&copy; 2017 By Droni.co</p>
-    </div>
-</footer>
 
     <!-- Scripts -->
     <script src="/js/jquery.min.js"></script>
@@ -33,7 +38,8 @@
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/jquery.dataTables.min.js"></script>
     <script src="/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/js/jquery.fancybox.min.js"></script>    
+    <script src="/js/jquery.fancybox.min.js"></script>
+    <script src="/js/tagsinput.js"></script>
     <script src="/js/app.js"></script>
 </body>
 </html>

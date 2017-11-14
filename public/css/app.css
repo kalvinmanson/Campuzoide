@@ -1,18 +1,5 @@
 @charset "UTF-8";
 
-/*
-$blue:    #017eae !default;
-$indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
-$pink:    #e83e8c !default;
-$red:     #dc3545 !default;
-$orange:  #ff6203 !default;
-$yellow:  #ffc107 !default;
-$green:   #28a745 !default;
-$teal:    #20c997 !default;
-$cyan:    #0197ca !default;
-*/
-
 /*!
  * Bootstrap v4.0.0-beta (https://getbootstrap.com)
  * Copyright 2011-2017 The Bootstrap Authors
@@ -16977,6 +16964,88 @@ a.text-dark:hover {
   border-top-right-radius: 3px;
 }
 
+/*
+ * bootstrap-tagsinput v0.8.0
+ * 
+ */
+
+.bootstrap-tagsinput {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  display: inline-block;
+  padding: 4px 6px;
+  color: #555;
+  vertical-align: middle;
+  border-radius: 4px;
+  width: 100%;
+  line-height: 22px;
+  cursor: text;
+}
+
+.bootstrap-tagsinput input {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+  background-color: transparent;
+  padding: 0 6px;
+  margin: 0;
+  width: auto;
+  max-width: inherit;
+}
+
+.bootstrap-tagsinput.form-control input::-moz-placeholder {
+  color: #777;
+  opacity: 1;
+}
+
+.bootstrap-tagsinput.form-control input:-ms-input-placeholder {
+  color: #777;
+}
+
+.bootstrap-tagsinput.form-control input::-webkit-input-placeholder {
+  color: #777;
+}
+
+.bootstrap-tagsinput input:focus {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.bootstrap-tagsinput .badge {
+  margin-right: 2px;
+  color: white;
+  background-color: #0275d8;
+  padding: 5px 8px;
+  border-radius: 3px;
+  border: 1px solid #01649e;
+}
+
+.bootstrap-tagsinput .badge [data-role="remove"] {
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.bootstrap-tagsinput .badge [data-role="remove"]:after {
+  content: "\D7";
+  padding: 0px 4px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  font-size: 13px;
+}
+
+.bootstrap-tagsinput .badge [data-role="remove"]:hover:after {
+  background-color: rgba(0, 0, 0, 0.62);
+}
+
+.bootstrap-tagsinput .badge [data-role="remove"]:hover:active {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
 /* MIXINS */
 
 /*
@@ -17024,5 +17093,21 @@ body {
   width: 100%;
   height: 100%;
   overflow-y: auto;
+}
+
+.answers {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.answer {
+  display: block;
+  margin-bottom: 5px;
+  padding: 15px;
+  font-size: 1.3em;
+  background-color: #017eae;
+  color: #f8f9fa;
+  cursor: pointer;
 }
 

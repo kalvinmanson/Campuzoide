@@ -44,7 +44,7 @@ class PageController extends Controller
         $page->country_id = Country::first()->id;
         $page->save();
         flash('Record created')->success();
-        return redirect()->action('Admin\PageController@cooperate');
+        return redirect()->action('Admin\PageController@index');
 
     }
 

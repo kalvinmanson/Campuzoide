@@ -21,6 +21,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->middleware('auth')->gr
     Route::resource('careers', 'CareerController');
     Route::resource('grades', 'GradeController');
     Route::resource('areas', 'AreaController');
+    Route::resource('questions', 'QuestionController');
     #Route::resource('admin/contacts', 'ContactController');
 
     //personales
@@ -32,7 +33,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/questions', 'QuestionController@index');
     Route::get('/questions/challenge', 'QuestionController@challenge');
     Route::get('/questions/cooperate', 'QuestionController@cooperate');
-    Route::any('/questions/create', 'QuestionController@create');
+    Route::post('/questions/answer', 'QuestionController@answer');
+    Route::resource('questions', 'QuestionController');
+
+    Route::resource('comments', 'CommentController');
 });
 
 Auth::routes();

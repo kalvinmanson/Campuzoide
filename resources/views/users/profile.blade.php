@@ -1,4 +1,4 @@
-@extends('layouts.campus')
+@extends('layouts.app')
 
 @section('content')
 <img src="/img/clips/home01.jpg" class="img-fluid">

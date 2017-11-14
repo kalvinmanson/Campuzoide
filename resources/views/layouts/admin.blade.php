@@ -53,6 +53,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/areas">Areas</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/questions">Questions</a>
+                </li>
             </ul>
             <ul class="navbar-nav my-2 my-lg-0">
                 <li class="nav-item">

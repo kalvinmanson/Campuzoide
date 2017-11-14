@@ -5,13 +5,16 @@
   <h1 class="display-3">Crear una nueva pregunta</h1>
   <p class="lead">Crear una nueva pregunta no es tarea facil, recuerda ser muy critico y poner todo tu esfuerzo para que la comunidad pueda disfrutar de preguntas de calidad que fortalezcan sus procesos de aprendizaje.</p>
 </div>
-<form method="POST" action="{{ url('questions/create') }}">
+<form method="POST" action="{{ url('questions/' . $question->id) }}">
+    <input type="hidden" name="_method" value="PUT">
     {{ csrf_field() }}
     <div class="form-group">
         <label for="area_id">Grado y Área a la que pertenece la pregunta</label>
         <select class="form-control" id="area_id" name="area_id">
         	@foreach($areas as $area)
-        	<option value="{{ $area->id }}" {{ old('area_id') == $area->id ? 'selected' : '' }}>{{ $area->grade->career->name }} | {{ $area->grade->name }} | {{ $area->name }}</option>
+        	<option value="{{ $area->id }}" {{ $question->area_id == $area->id ? 'selected' : '' }}>
+                {{ $area->grade->career->name }} | {{ $area->grade->name }} | {{ $area->name }}
+            </option>
         	@endforeach
         </select>
     </div>
@@ -39,7 +42,7 @@
             <label for="option_a">Opcion A</label>
             <div class="input-group">
                 <span class="input-group-addon">
-                    <input type="radio" name="correct" value="1" required>
+                    <input type="radio" name="correct" value="1" {{ $question->correct == 1 ? 'checked' : '' }} required>
                 </span>
                 <input type="text" class="form-control" id="option_a" name="option_a" placeholder="Las plantas aumentarían la absorción del nitrógeno." value="{{ old('option_a') ? old('option_a') : $question->option_a }}" required>
             </div>
@@ -48,7 +51,7 @@
             <label for="option_b">Opcion B</label>
             <div class="input-group">
                 <span class="input-group-addon">
-                    <input type="radio" name="correct" value="2" required>
+                    <input type="radio" name="correct" value="2" {{ $question->correct == 2 ? 'checked' : '' }} required>
                 </span>
                 <input type="text" class="form-control" id="option_b" name="option_b" placeholder="Las plantas tendrían menos nutrientes para crecer" value="{{ old('option_b') ? old('option_b') : $question->option_b }}" required>
             </div>
@@ -57,7 +60,7 @@
             <label for="option_c">Opcion C</label>
             <div class="input-group">
                 <span class="input-group-addon">
-                    <input type="radio" name="correct" value="3" required>
+                    <input type="radio" name="correct" value="3" {{ $question->correct == 3 ? 'checked' : '' }} required>
                 </span>
                 <input type="text" class="form-control" id="option_c" name="option_c" placeholder="Las proteínas no tendrían nitrógeno." value="{{ old('option_c') ? old('option_c') : $question->option_c }}" required>
             </div>
@@ -66,7 +69,7 @@
             <label for="option_d">Opcion D</label>
             <div class="input-group">
                 <span class="input-group-addon">
-                    <input type="radio" name="correct" value="4" required>
+                    <input type="radio" name="correct" value="4" {{ $question->correct == 4 ? 'checked' : '' }} required>
                 </span>
                 <input type="text" class="form-control" id="option_d" name="option_d" placeholder="Los seres vivos ya no necesitarían el nitrógeno." value="{{ old('option_d') ? old('option_d') : $question->option_d }}" required>
             </div>
@@ -87,7 +90,7 @@
         </div>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Crear Pregunta</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Editar Pregunta</button>
     </div>
 </form>
 @endsection

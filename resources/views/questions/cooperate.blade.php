@@ -1,4 +1,4 @@
-@extends('layouts.campus')
+@extends('layouts.app')
 
 @section('content')
 <div class="container-fluid pt-3">
@@ -18,16 +18,33 @@
   			</div>
   			<div class="card-body p-0">
   				<table class="table table-striped">
-  					<tr>
-  						<th>Pregunta</th>
-  						<th></th>
-  					</tr>
+            <thead>
+    					<tr>
+                <th width="100"></th>
+    						<th>Pregunta</th>
+    						<th></th>
+    					</tr>
+            </thead>
+            <tbody>
   					@foreach($myQuestions as $question)
-  					<tr>
-  						<td>{{ $question->name }}</td>
-  						<td></td>
+  					<tr class="{{ $question->active ? '' : 'table-warning' }}">
+              <td>
+                <h1><span class="badge badge-primary">{{ $question->rank }}%</span></h1>
+              </td>
+  						<td>
+                <small>{{ $question->career->name }} / {{ $question->grade->name }} / {{ $question->area->name }}</small><br>
+                <strong>{{ $question->name }}</strong><br>
+                <span class="badge bg-success">
+                    {{ $question->answers->where('result', 1)->count() }} <i class="fa fa-check"></i>
+                </span>
+                <span class="badge bg-danger">
+                    {{ $question->answers->where('result', 0)->count() }} <i class="fa fa-remove"></i>
+                </span>
+              </td>
+  						<td><a href="/questions/{{ $question->id }}/edit"><i class="fa fa-edit"></i></a></td>
   					</tr>
   					@endforeach
+            </tbody>
   				</table>
   			</div>
   		</div>

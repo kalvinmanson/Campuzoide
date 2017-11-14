@@ -54,5 +54,35 @@ $(function() {
 		$( this ).replaceWith( "<input type='text' class='form-control' name='format' required>" );
 	});
 
+	$(".tagsInput").tagsinput();
+
+
+	$.fn.randomize = function(selector){
+	    var $elems = selector ? $(this).find(selector) : $(this).children(),
+	        $parents = $elems.parent();
+
+	    $parents.each(function(){
+	        $(this).children(selector).sort(function(){
+	            return Math.round(Math.random()) - 0.5;
+	        // }). remove().appendTo(this); // 2014-05-24: Removed `random` but leaving for reference. See notes under 'ANOTHER EDIT'
+	        }).detach().appendTo(this);
+	    });
+
+	    return this;
+	};
+
+	$('.answers').randomize('li');
+
+	$(".answer").click( function() {
+		let result = $(this).data('result');
+		let token = $("input[name='_token']").val();
+		let question_id = $("input[name='question_id']").val();
+		let url = $("input[name='url']").val();
+
+		$( "#result" ).load( "/questions/answer", { _token: token, answer: result, question_id: question_id, url: url }, function() {
+		  $('.answers').remove();
+		});
+	});
+
 });
 
