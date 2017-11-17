@@ -38,8 +38,8 @@ class QuestionController extends Controller
         }
 
         //validate previws response
-        /*$userResponses = Answer::where('user_id', Auth::user()->id)->pluck('question_id')->toArray();
-        $question = $question->whereNotIn('id', $userResponses);*/
+        $userResponses = Answer::where('user_id', Auth::user()->id)->pluck('question_id')->toArray();
+        $question = $question->whereNotIn('id', $userResponses);
 
         $question = $question->first();
 
