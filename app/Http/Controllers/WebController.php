@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Category;
 use App\Page;
+use App\Question;
 
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class WebController extends Controller
 {
     public function index()
     {
-        return view('web.index');
+        $lastQuestions = Question::where('active', 1)->orderBy('created_at', 'desc')->limit(5)->get();
+        return view('web.index', compact('lastQuestions'));
     }
     public function category($slug)
     {

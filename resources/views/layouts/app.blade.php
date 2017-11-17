@@ -15,7 +15,7 @@
     <!-- editor -->
     <script src="{{ asset('editor/ckeditor.js') }}"></script>
 </head>
-<body class="pt-5">
+<body>
 @include('partials.header')
     <div class="campus">
         @include('partials.user')
@@ -25,7 +25,7 @@
                     @include('flash::message')
                     @include('partials.errors')
                 </div>
-                <div class="container-fluid">
+                <div class="{{ Auth::check() ? 'container-fluid' : 'container'}}">
                     @yield('content')
                 </div>
             </div>
