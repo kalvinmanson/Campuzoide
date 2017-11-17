@@ -3,11 +3,15 @@
 @section('content')
 
 <div class="jumbotron">
-  <h1>{{ $question->name }}</h1>
   <div class="row">
     <div class="col-sm-7 col-lg-6">
+        <h1>{{ $question->name }}</h1>
         @if($question->picture)
-            <img src="{{ $question->picture }}" class="img-fluid"> 
+            <div class="w-25 float-right ml-2 mb-2">
+                <a href="{{ $question->picture }}" title="{{ $question->name }}" data-fancybox data-caption="{{ $question->name }}">
+                    <img src="{{ $question->picture }}" alt="{{ $question->name }}" class="img-fluid">
+                </a>
+            </div>
         @endif
         {!! $question->content !!}
     </div>
