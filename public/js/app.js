@@ -75,14 +75,49 @@ $(function() {
 
 	$(".answer").click( function() {
 		let result = $(this).data('result');
+		answer(result);
+	});
+
+	// Timer
+	var time = $('#timer').text() * 60;
+	var timePlayer = 0;
+	if(time > 0) {
+		var timer = setInterval(muestraReloj, 1000);
+	}
+	function muestraReloj() {
+		time = time - 1;
+  		var minutes = Math.floor(time / 60) % 60;
+  		var seconds =  (time % 60);
+		$('#timer').text(minutes + ':' + seconds);
+		timePlayer = timePlayer + 1;
+		$("input[name='timePlayer']").val(timePlayer);
+		if(time < 1) {
+			clearInterval(timer);
+			answer(0);
+			
+		}
+	}
+
+	function answer(result) {
 		let token = $("input[name='_token']").val();
 		let question_id = $("input[name='question_id']").val();
 		let url = $("input[name='url']").val();
+		let timePlayer = $("input[name='timePlayer']").val();
 
-		$( "#result" ).load( "/questions/answer", { _token: token, answer: result, question_id: question_id, url: url }, function() {
+		$( "#result" ).load( "/questions/answer", { 
+			_token: token, 
+			answer: result, 
+			question_id: question_id, 
+			url: url, 
+			timePlayer: timePlayer 
+		}, function() {
 		  $('.answers').remove();
 		});
-	});
+
+	}
+
+
+	
 
 });
 

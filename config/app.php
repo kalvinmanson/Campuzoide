@@ -183,7 +183,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         HTMLMin\HTMLMin\HTMLMinServiceProvider::class,
         Laracasts\Generators\GeneratorsServiceProvider::class,
-
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -239,6 +239,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'HTMLMin' => HTMLMin\HTMLMin\Facades\HTMLMin::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

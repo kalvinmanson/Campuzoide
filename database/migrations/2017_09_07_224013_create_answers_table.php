@@ -17,7 +17,6 @@ class CreateAnswersTable extends Migration
             $table->increments('id');
             $table->integer('question_id')->default(0);
             $table->integer('user_id')->default(0);
-            $table->integer('exam_id')->default(0);
             $table->integer('result')->default(0);
             $table->integer('time')->default(0);
             $table->timestamps();

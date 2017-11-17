@@ -29,7 +29,6 @@ class CreateQuestionsTable extends Migration
             $table->string('option_d')->nullable();
             $table->integer('correct')->default(1);
             $table->float('rank')->default(0);
-            $table->integer('level')->default(0);
             $table->integer('time')->default(0);
             $table->string('tags')->nullable();
             $table->boolean('active')->default(false);

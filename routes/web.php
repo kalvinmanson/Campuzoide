@@ -29,18 +29,26 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->middleware('auth')->gr
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/users/{slug}', 'UserController@profile')->where('slug', '[a-z,0-9-]+');
     Route::get('/questions', 'QuestionController@index');
     Route::get('/questions/challenge', 'QuestionController@challenge');
     Route::get('/questions/cooperate', 'QuestionController@cooperate');
     Route::post('/questions/answer', 'QuestionController@answer');
-    Route::resource('questions', 'QuestionController');
-
+    Route::resource('questions', 'QuestionController', ['except' => [
+        'show'
+    ]]);
     Route::resource('comments', 'CommentController');
 });
 
+
+Route::get('/questions/{code}', 'QuestionController@show')->where('code', '[0-9-]+');
+
 Auth::routes();
+
+Route::get('login/google', 'Auth\LoginController@redirectToProvider');
+Route::get('login/google/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('/users/confirmation/{token}', 'Auth\RegisterController@confirmation')->name('confirmation');
+Route::get('/users/{slug}', 'UserController@profile')->where('slug', '[a-z,0-9-]+');
 
 Route::get('/home', 'WebController@index')->name('home');
 Route::get('/admin', function() {

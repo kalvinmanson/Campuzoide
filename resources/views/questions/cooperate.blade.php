@@ -33,7 +33,7 @@
               </td>
   						<td>
                 <small>{{ $question->career->name }} / {{ $question->grade->name }} / {{ $question->area->name }}</small><br>
-                <strong>{{ $question->name }}</strong><br>
+                <a href="/questions/{{ $question->code }}"><strong>{{ $question->name }}</strong></a><br>
                 <span class="badge bg-success">
                     {{ $question->answers->where('result', 1)->count() }} <i class="fa fa-check"></i>
                 </span>

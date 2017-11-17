@@ -25,7 +25,7 @@
                     @include('flash::message')
                     @include('partials.errors')
                 </div>
-                <div class="{{ Auth::check() ? 'container-fluid' : 'container'}}">
+                <div class="container-fluid">
                     @yield('content')
                 </div>
             </div>

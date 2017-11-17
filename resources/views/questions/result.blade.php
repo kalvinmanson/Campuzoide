@@ -4,4 +4,6 @@
 	<div class="bg-danger text-white p-3">¡Incorrecto!</div>
 @endif
 
+@include('partials.comment', ['type' => 'question', 'comments' => $answer->question->comments])
+
 <a href="{{ $url }}" class="btn btn-block btn-secondary">Siguiente <i class="fa fa-angle-right"></i></a>

@@ -5,7 +5,7 @@
   <h1 class="display-3">Crear una nueva pregunta</h1>
   <p class="lead">Crear una nueva pregunta no es tarea facil, recuerda ser muy critico y poner todo tu esfuerzo para que la comunidad pueda disfrutar de preguntas de calidad que fortalezcan sus procesos de aprendizaje.</p>
 </div>
-<form method="POST" action="{{ url('questions/create') }}">
+<form method="POST" action="{{ url('questions') }}">
     {{ csrf_field() }}
     <div class="form-group">
         <label for="area_id">Grado y Área a la que pertenece la pregunta</label>
