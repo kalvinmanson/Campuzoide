@@ -60,11 +60,11 @@ class LoginController extends Controller
         if($userCheck) {
             $loginUser = $userCheck;
             // si no tiene nombre
-            if(emty($loginUser->name)) {
+            if(empty($loginUser->name)) {
                 $loginUser->name = $user->name;    
             }
             // si no tiene nombre
-            if(emty($loginUser->picture)) {
+            if(empty($loginUser->picture)) {
                 $loginUser->picture = $user->avatar;    
             }
         } else {
@@ -81,7 +81,7 @@ class LoginController extends Controller
 
         auth()->login($loginUser, true);
 
-        return redirect()->action('UserController@profile', $loginUser->username);
+        return redirect()->action('UserController@show', $loginUser->username);
 
         // $user->token;
     }
