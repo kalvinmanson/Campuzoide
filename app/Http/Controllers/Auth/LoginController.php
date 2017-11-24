@@ -59,8 +59,14 @@ class LoginController extends Controller
         
         if($userCheck) {
             $loginUser = $userCheck;
-            $loginUser->name = $user->name;
-            $loginUser->picture = $user->avatar;
+            // si no tiene nombre
+            if(emty($loginUser->name)) {
+                $loginUser->name = $user->name;    
+            }
+            // si no tiene nombre
+            if(emty($loginUser->picture)) {
+                $loginUser->picture = $user->avatar;    
+            }
         } else {
             $loginUser = new User;
             $loginUser->email = $user->email;

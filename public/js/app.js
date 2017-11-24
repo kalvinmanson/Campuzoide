@@ -116,6 +116,10 @@ $(function() {
 
 	}
 
+	if(window.location.hash == "#update") {
+		$('#userOptions a[href="#editProfile"]').tab('show')
+	}
+
 
 	
 

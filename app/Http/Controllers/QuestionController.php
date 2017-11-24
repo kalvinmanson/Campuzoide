@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 class QuestionController extends Controller
 {
     public function index() {
+
     	$careers = Career::all();
     	return view('questions.index', compact('careers'));
     }
@@ -26,6 +27,12 @@ class QuestionController extends Controller
         return view('questions.show', compact('question'));
     }
     public function challenge(Request $request) {
+
+        //validar si ya tiene grado
+        if(!Auth::user()->grade) {
+            flash('Antes de iniciar un desafio edita tu perfil y agrega tu nivel académico.')->warning();
+            return redirect('users/'.Auth::user()->username.'#update');
+        }
 
         $question = Question::where('active', true)->inRandomOrder()->get();
     	

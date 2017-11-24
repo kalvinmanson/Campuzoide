@@ -6,7 +6,7 @@
         <div class="card bg-primary text-white border-0">
           <img class="card-img" src="/img/clips/home01.jpg" alt="Bienvenido a Campuzoide">
           <div class="card-body">
-            <p class="card-text">Campuzoide es una plataforma de entrenamiento en pruebas SABER (3°, 5°, 9° y 11°) en la que podras encontrar diferentes preguntas correspondientesa las áreas que se trabajan en estas pruebas. Enfrentate a los desafios de preguntas, gana medallas, mejora tu ranking y demuestra que eres el mejor.</p>
+            <p class="card-text">Campuzoide es una plataforma de entrenamiento en pruebas SABER (3°, 5°, 9° y 11°) en la que podrás encontrar diferentes preguntas correspondiente a las áreas que se trabajan en estas pruebas. Enfréntate a los desafíos de preguntas, gana medallas, mejora tu ranking y demuestra que eres el mejor.</p>
           </div>
         </div>
     </div>
