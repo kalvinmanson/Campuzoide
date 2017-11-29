@@ -28,6 +28,13 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->middleware('auth')->gr
 	Route::post('pages/duplicate', ['as' => 'pages.duplicate', 'uses' => 'PageController@duplicate']);
 });
 
+//aulas virtuales
+Route::prefix('aula')->namespace('Aula')->as('aula.')->group(function () {
+    Route::get('{id}', 'AreaController@index')->where('id', '[0-9-]+');
+});
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/questions', 'QuestionController@index');
     Route::get('/questions/challenge', 'QuestionController@challenge');

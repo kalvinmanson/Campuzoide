@@ -65,6 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         //validate username unique
         $validate = User::where('username', 'LIKE', str_slug($data['name'])."%")->get();
         if($validate) {
@@ -82,6 +83,7 @@ class RegisterController extends Controller
     }
     protected function register(Request $request) 
     {
+
         $input = $request->all();
         $validator = $this->validator($input);
 

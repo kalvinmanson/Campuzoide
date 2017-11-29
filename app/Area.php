@@ -10,4 +10,16 @@ class Area extends Model
     {
         return $this->belongsTo('App\Grade');
     }
+    public function contents()
+    {
+        return $this->hasMany('App\Content');
+    }
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
+    public function topics()
+    {
+        return $this->hasMany('App\Topic');
+    }
 }
