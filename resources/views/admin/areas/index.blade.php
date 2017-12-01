@@ -24,7 +24,8 @@
                 <td>{{ $area->grade->career->name }}</td>
                 <td>{{ $area->grade->name }}</td>
                 <td>
-                    <a href="/admin/areas/{{ $area->id }}/edit">{{ $area->name }}</a>
+                    <a href="/admin/areas/{{ $area->id }}/edit">{{ $area->name }}</a><br>
+                    <small>{{ $area->slug }}</small>
                 </td>
                 <td>{{ $area->created_at }}</td>
                 <td>{{ $area->updated_at }}</td>

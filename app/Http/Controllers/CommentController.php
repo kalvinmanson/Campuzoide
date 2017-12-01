@@ -13,43 +13,41 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     public function index() {
-    	$careers = Career::all();
-    	return view('questions.index', compact('careers'));
+    	
     }
     
     public function create() {
-        $comment = new Comment;
-        $areas = Area::orderBy('grade_id')->get();
-        return view('questions.create', compact('question', 'areas'));
+        
     }
 
     public function store(Request $request) {
 
+        $this->validate(request(), [
+            'content' => ['required', 'max:255', 'min:20'],
+        ]);
+
+        $comment = new Comment;
+        $comment->user_id = Auth::user()->id;
+        $comment->question_id = $request->question_id;
+        $comment->post_id = $request->post_id;
+        $comment->content_id = $request->content_id;
+        $comment->content = nl2br(strip_tags($request->content));
+        $comment->report = ($request->report == 1 ? 1 : 0);
+        $comment->save();
+
+        flash('Comentario agregado.')->success();
+        if($comment->question_id > 0) {
+            return redirect()->action('QuestionController@show', $comment->question->code);
+        } elseif($comment->post_id > 0) {
+            return redirect()->action('Aula\PostController@show', $comment->post->slug);
+        }
     }
 
     public function edit($id) {
-        $comment = Comment::where('id', $id)->where('user_id', Auth::user()->id)->first();
-        $areas = Area::orderBy('grade_id')->get();
-        return view('questions.edit', compact('question', 'areas'));
+        
     }
 
     public function update($id, Request $request) {
         
-        $comment = Comment::where('id', $id)->where('user_id', Auth::user()->id)->first();
-
-        $this->validate(request(), [
-            'area_id' => ['required'],
-            'name' => ['required', 'max:255'],
-            'option_a' => ['required', 'max:255'],
-            'option_b' => ['required', 'max:255'],
-            'option_c' => ['required', 'max:255'],
-            'option_d' => ['required', 'max:255'],
-            'time' => ['required'],
-            'correct' => ['required'],
-        ]);
-        $comment->save();
-
-        flash('La prgeunta se ha actualizado y está pendiente de aprobacion.')->success();
-        return redirect()->action('CommentController@cooperate');
     }
 }

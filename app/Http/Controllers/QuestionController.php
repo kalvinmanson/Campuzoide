@@ -80,7 +80,7 @@ class QuestionController extends Controller
         $this->recalcularUser();
         $this->recalcularQuestion($question->id);
         $url = $request->url;
-        return view('questions.result', compact('answer', 'url'));
+        return view('questions.result', compact('$question', 'answer', 'url'));
     }
 
     public function cooperate() {

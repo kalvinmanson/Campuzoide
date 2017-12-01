@@ -120,8 +120,20 @@ $(function() {
 		$('#userOptions a[href="#editProfile"]').tab('show')
 	}
 
+	//Vote
+	$("#vote").click( function() {
+		var csrf = $(this).data('csrf');
+		var type = $(this).data('type');
+		var id = $(this).data('id');
+		$(this).removeClass('btn-secondary');
+		$(this).addClass('btn-danger');
 
-	
+		$( "#voteResult" ).load( "/votes", { 
+			_token: csrf, 
+			type: type, 
+			id: id
+		});
+	});
 
 });
 

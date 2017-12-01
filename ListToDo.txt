@@ -1,14 +1,19 @@
-SortModel Lib table
-use mail()
-relationships
+Comments */
+Votes **
 
-Comments
-Votes
+Resultados
 
 Algorith questions
 
+como funciona
+blog
+home
+
 Analytics
 WebMasterTools
+Schema
 SEO
 Adsense
 Social network
+
+Error pages

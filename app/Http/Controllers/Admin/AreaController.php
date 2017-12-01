@@ -39,10 +39,12 @@ class AreaController extends Controller
 
         $area = Area::find($id);
         $this->validate(request(), [
-            'name' => ['required', 'max:150']
+            'name' => ['required', 'max:150'],
+            'slug' => ['unique:areas,slug,'.$area->id, 'required', 'max:100']
         ]);
         
         $area->name = $request->name;
+        $area->slug = $request->slug;
         $area->grade_id = $request->grade_id;
         $area->save();
 

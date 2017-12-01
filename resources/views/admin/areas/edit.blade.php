@@ -18,6 +18,10 @@
             <input type="text" class="form-control" id="name" name="name" placeholder="ej. Colombia" value="{{ old('name') ? old('name') : $area->name }}">
         </div>
         <div class="form-group">
+            <label for="slug">Slug</label>
+            <input type="text" class="form-control" id="slug" name="slug" placeholder="colombia" value="{{ old('slug') ? old('slug') : $area->slug }}">
+        </div>
+        <div class="form-group">
             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
         </div>
     </form>

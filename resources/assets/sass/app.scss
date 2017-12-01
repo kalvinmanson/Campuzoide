@@ -1,13 +1,14 @@
-$blue:    #017eae !default;
+$blue:    #00708C !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
-$red:     #dc3545 !default;
+$red:     #FF404C !default;
 $orange:  #ff6203 !default;
 $yellow:  #ffc107 !default;
 $green:   #28a745 !default;
-$teal:    #20c997 !default;
+$teal:    #1CA5B8 !default;
 $cyan:    #0197ca !default;
+$white:   #FFFFFF;
 
 // Bootstrap
 @import "./bootstrap/bootstrap";
@@ -57,6 +58,13 @@ $screen-md-max: ($screen-lg-min - 1);
 @media (max-width: $screen-md-max) { ... }
 @media (min-width: $screen-lg-min) { ... }
 */
+
+@import url('https://fonts.googleapis.com/css?family=Barlow+Condensed:300,400,700,800,900');
+
+h1, h2, h3, h4, h5 {
+	font-family: 'Barlow Condensed', sans-serif;
+}
+
 html {
 	height: 100%;
 }
@@ -124,6 +132,16 @@ header {
 	padding: 0;
 	margin: 0;
 	list-style: none;
+	@include grid-colums(2, 15);
+
+	@media (max-width: $screen-sm-max) {
+		@include grid-colums(1, 15);
+	}
+}
+.answers li {
+	display: block;
+	border-left: 5px solid $cyan;
+	@include colum-breack();
 }
 .answer {
 	display: block;
@@ -133,4 +151,67 @@ header {
 	background-color: $blue;
 	color: $gray-100;
 	cursor: pointer;
+}
+.question {
+	display: block;
+	background-color: white;
+	border-left: 5px solid $teal;
+	padding: 15px;
+}
+.question .title {
+	display: block;
+	position: relative;
+	border-left: 5px solid $teal;
+	background-color: $cyan;
+	padding: 10px;
+	margin-left: -30px;
+	color: $white;
+}
+
+blockquote{
+  display:block;
+  background: #fff;
+  padding: 15px 20px 15px 45px;
+  margin: 0 0 20px;
+  position: relative;
+  
+  /*Font*/
+  font-size: 14px;
+  line-height: 1.2;
+  color: #666;
+
+  /*Box Shadow - (Optional)*/
+  -moz-box-shadow: 2px 2px 15px #ccc;
+  -webkit-box-shadow: 2px 2px 15px #ccc;
+  box-shadow: 2px 2px 15px #ccc;
+
+  /*Borders - (Optional)*/
+  border-left-style: solid;
+  border-left-width: 15px;
+  border-right-style: solid;
+  border-right-width: 2px;    
+}
+
+blockquote::before{
+  content: "\201C"; /*Unicode for Left Double Quote*/
+  
+  /*Font*/
+  font-size: 60px;
+  font-weight: bold;
+  color: #999;
+  
+  /*Positioning*/
+  position: absolute;
+  left: 10px;
+  top:5px;
+  
+}
+
+blockquote::after{
+  /*Reset to make sure*/
+  content: "";
+}
+
+blockquote em{
+  font-style: italic;
 }

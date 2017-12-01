@@ -14,6 +14,10 @@ class Comment extends Model
     {
         return $this->belongsTo('App\Post');
     }
+    public function content()
+    {
+        return $this->belongsTo('App\Content');
+    }
     public function question()
     {
         return $this->belongsTo('App\Question');

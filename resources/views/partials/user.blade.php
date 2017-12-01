@@ -9,11 +9,18 @@
       <a href="/questions/cooperate" class="list-group-item list-group-item-action">Colaborar</a>
     </div>
     <div class="list-group">
-      <span class="list-group-item active"><strong>Aulas: {{ Auth::user()->grade->name }}</strong><br><small>{{ Auth::user()->grade->career->name }}</small></span>
+      <span class="list-group-item active"><strong>Aulas: {{ Auth::user()->grade ? Auth::user()->grade->name : '' }}</strong>@if(Auth::user()->grade)
+        <br><small>{{ Auth::user()->grade->career->name }}</small>
+      @endif
+    </span>
+    @if(Auth::user()->grade)
       @foreach(Auth::user()->grade->areas as $area)
-        <a href="/aula/{{ $area->id }}" class="list-group-item list-group-item-action">{{ $area->name }}</a>
+        <a href="/aula/{{ $area->slug }}" class="list-group-item list-group-item-action">{{ $area->name }}</a>
       @endforeach
     </div>
+    @else
+      <a href="/users/{{ Auth::user()->username }}#update" class="list-group-item list-group-item-action">Actualiza tu perfil</a>
+    @endif
   </div>
 </div>
 @endif

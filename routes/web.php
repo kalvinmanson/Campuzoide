@@ -30,7 +30,7 @@ Route::prefix('admin')->namespace('Admin')->as('admin.')->middleware('auth')->gr
 
 //aulas virtuales
 Route::prefix('aula')->namespace('Aula')->as('aula.')->group(function () {
-    Route::get('{id}', 'AreaController@index')->where('id', '[0-9-]+');
+    Route::get('{slug}', 'AreaController@index')->where('slug', '[a-z,0-9-]+');
 });
 
 
@@ -41,7 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/questions/cooperate', 'QuestionController@cooperate');
     Route::post('/questions/answer', 'QuestionController@answer');
     Route::resource('questions', 'QuestionController', ['except' => ['show']]);
-    Route::resource('comments', 'CommentController');
+    Route::resource('comments', 'CommentController', ['except' => ['show']]);
+    Route::resource('votes', 'VoteController', ['except' => ['show']]);
 });
 
 

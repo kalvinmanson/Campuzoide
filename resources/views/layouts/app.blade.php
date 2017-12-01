@@ -21,7 +21,7 @@
         @include('partials.user')
         <div class="content">
             <div class="inner pt-4">
-                <div class="container">
+                <div class="{{ Auth::check() ? 'container-fluid' : 'container'}}">
                     @include('flash::message')
                     @include('partials.errors')
                 </div>

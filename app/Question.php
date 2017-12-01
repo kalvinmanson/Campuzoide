@@ -24,10 +24,14 @@ class Question extends Model
     }
     public function answers()
     {
-        return $this->hasMany('App\Answer');
+        return $this->hasMany('App\Answer')->orderBy('created_at', 'desc');
     }
     public function comments()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Comment')->orderBy('created_at', 'desc');
+    }
+    public function votes()
+    {
+        return $this->hasMany('App\Vote');
     }
 }

@@ -2,22 +2,39 @@
 
 @section('content')
 
-<div class="jumbotron">
-  <div class="row">
-    <div class="col-sm-7 col-lg-6">
-        <h1>{{ $question->name }}</h1>
-        @if($question->picture)
-            <div class="w-25 float-right ml-2 mb-2">
-                <a href="{{ $question->picture }}" title="{{ $question->name }}" data-fancybox data-caption="{{ $question->name }}">
-                    <img src="{{ $question->picture }}" alt="{{ $question->name }}" class="img-fluid">
-                </a>
+<div class="row">
+    <div class="col-md-8">
+        <div class="question">
+            <h1 class="title">{{ $question->name }}</h1>
+            <div class="info">
+                <button type="button" id="vote" class="btn {{ ($question->votes->where('user_id', Auth::user()->id)->count() > 0) ? 'btn-danger' : 'btn-secondary' }} float-right" data-csrf="{{ csrf_token() }}" data-type="question" data-id="{{ $question->id }}">
+                    <i class="fa fa-heart-o"></i>
+                    <span id="voteResult">{{ $question->votes->count() }}</span>
+                </button>
+                <p class="text-muted">
+                    <small>
+                    Autor: {{ $question->user->name }}<br>
+                    Nivel: {{ $question->area->grade->career->name }}, {{ $question->area->grade->name }}, {{ $question->area->name }}<br>
+                    </small>
+                </p>
+                <div class="clearfix"></div>
             </div>
-        @endif
-        {!! $question->content !!}
-    </div>
-    <div class="col-sm-5 col-lg-3">
+            @if($question->picture)
+                <div class="w-25 float-right ml-2 mb-2">
+                    <a href="{{ $question->picture }}" title="{{ $question->name }}" data-fancybox data-caption="{{ $question->name }}">
+                        <img src="{{ $question->picture }}" alt="{{ $question->name }}" class="img-thumbnail img-fluid">
+                    </a>
+                </div>
+            @endif
+            {!! $question->content !!}
+        </div>
+        <div class="clearfix"></div>
         <div id="result">
-            <div class="time" id="timer">{{ $question->time }}</div>
+            @if($question->time > 0)
+            <div class="row">
+                <div class="time col-sm-4 bg-dark text-white p-2 text-center m-auto" style="font-size: 3em;" id="timer">{{ $question->time }}</div>
+            </div>
+            @endif
         </div>
 
         {{ csrf_field() }}
@@ -30,18 +47,12 @@
             <li class="answer" data-result="3">{{ $question->option_c }}</li>
             <li class="answer" data-result="4">{{ $question->option_d }}</li>
         </ul>
-        
     </div>
-    <div class="col-sm-12 col-lg-3">
-        <div class="row">
-            <div class="col-sm-6 col-lg-12">
-                @include('partials.cards.user', ['user' => $question->user])
-            </div>
-            <div class="col-sm-6 col-lg-12">
-                @include('partials.cards.question', ['question' => $question])
-            </div>
-        </div>
+    <div class="col-md-4">
+        @include('partials.cards.user', ['user' => $question->user])
+        @include('partials.cards.question', ['question' => $question])
+        @include('partials.cards.lastAnswers', ['question' => $question])
+
     </div>
-  </div> 
-</div>
+</div> 
 @endsection
