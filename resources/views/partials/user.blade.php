@@ -17,10 +17,10 @@
       @foreach(Auth::user()->grade->areas as $area)
         <a href="/aula/{{ $area->slug }}" class="list-group-item list-group-item-action">{{ $area->name }}</a>
       @endforeach
-    </div>
     @else
       <a href="/users/{{ Auth::user()->username }}#update" class="list-group-item list-group-item-action">Actualiza tu perfil</a>
     @endif
+    </div>
   </div>
 </div>
 @endif
