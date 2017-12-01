@@ -76,7 +76,7 @@
         <div class="col-sm-4">
             <div class="form-group">
                 <label for="time">Tiempo para responder (minutos)</label>
-                <input type="number" class="form-control" id="time" name="time" placeholder="0 significa que no corre el tiempo." value="{{ old('time') ? old('time') : $question->time }}">
+                <input type="number" class="form-control" id="time" name="time" value="5" placeholder="0 significa que no corre el tiempo." value="{{ old('time') ? old('time') : $question->time }}">
             </div>
         </div>
         <div class="col-sm-8">

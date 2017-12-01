@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="jumbotron">
-  <h1>Desafío de preguntas</h1>
+  <h1><i class="fa fa-gamepad text-secondary"></i> Desafío de preguntas</h1>
   <p class="lead">En un desafio te enfrentas a muchas preguntas de diferentes temas que tu elijas, la dificultad de la pregunta se elevara tras cada acierto y se reducira tras cada fallo.</p>
   <hr class="my-4">
   <p>Selecciona los filtros para tu desafío.</p>

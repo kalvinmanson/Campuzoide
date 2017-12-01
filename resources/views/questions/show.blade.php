@@ -29,6 +29,7 @@
             </div>
             @endif
             {!! $question->content !!}
+            <div class="clearfix"></div>
         </div>
         @include('partials.comment', ['type' => 'question', 'comments' => $question->comments])
     </div>
